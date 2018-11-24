@@ -5,20 +5,19 @@
 [![License](https://img.shields.io/cocoapods/l/JFHTTP.svg?style=flat)](https://cocoapods.org/pods/JFHTTP)
 [![Platform](https://img.shields.io/cocoapods/p/JFHTTP.svg?style=flat)](https://cocoapods.org/pods/JFHTTP)
 
-## Example
+## TODO
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+- [ ] pod
+- [ ] default AES crypto algorithm
+- [ ] custom AES crypto algorithm
+- [ ] custom response serilization
+- [ ] custom sign
 
 ## Requirements
 
-## Installation
-
-JFHTTP is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'JFHTTP'
-```
+* AFNetworking
+* HappyDNS
+* JFFoundation
 
 ## Author
 
