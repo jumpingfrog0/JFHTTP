@@ -1,5 +1,5 @@
 //
-//  JFViewController.h
+//  _JFHTTPLogger.h
 //  JFHTTP
 //
 //  Created by jumpingfrog0 on 2018/11/23.
@@ -26,8 +26,19 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
+#import <Foundation/Foundation.h>
 
-@interface JFViewController : UIViewController
+// 使用 fprintf 替代 NSLOg
+#ifdef DEBUG
+#define JFLogHttp(FORMAT, ...) fprintf(stderr, "%s:%d\t%s\n", [[[NSString stringWithUTF8String: __FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat: FORMAT, ## __VA_ARGS__] UTF8String]);
+#else
+#define JFLogHttp(FORMAT, ...) nil
+#endif
 
+@interface _JFHTTPLogger : NSObject
+@property(nonatomic, assign, getter=isEnabled) BOOL enabled;
+@property(nonatomic, assign, getter=isAllowNotify) BOOL allowNotify;
+
++ (instancetype)defaultLogger;
++ (void)printWithTask:(NSURLSessionDataTask *)task response:(id)responseObject encrypt:(BOOL)encrypt;
 @end

@@ -1,5 +1,5 @@
 //
-//  JFViewController.h
+//  JFNetworkDefines.h
 //  JFHTTP
 //
 //  Created by jumpingfrog0 on 2018/11/23.
@@ -26,8 +26,11 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
+#import <Foundation/Foundation.h>
 
-@interface JFViewController : UIViewController
+typedef NS_ENUM(NSInteger, JFNetworkStatusCode) {
+    JFNetworkStatusCodeDefaultError = -99999,
+};
 
-@end
+OBJC_EXTERN NSString *kJFNetworkDefaultErrorMessage;
+OBJC_EXTERN NSString *kJFNetworkAuthFailedError;

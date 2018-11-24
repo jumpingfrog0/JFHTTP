@@ -1,5 +1,5 @@
 //
-//  JFViewController.h
+//  _JFHTTPRequestPipe.h
 //  JFHTTP
 //
 //  Created by jumpingfrog0 on 2018/11/23.
@@ -26,8 +26,40 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
+#import <Foundation/Foundation.h>
+#import "JFHTTPRequest.h"
 
-@interface JFViewController : UIViewController
+
+/**
+ HTTP request 请求生成管道，负责将 JFHTTPRequest 根据配置对请求参数进行封装
+ */
+@interface _JFHTTPRequestPipe : NSObject
+
+/**
+ 来自 JFHTTPClient 的 token
+ */
+@property (nonatomic, copy) NSString *token;
+
+/**
+ 来自 JFHTTPClient 的 authtype
+ */
+@property (nonatomic, copy) NSString *type;
+
+/**
+ 来自 JFHTTPClient 的 sskey
+ */
+@property (nonatomic, copy) NSString *sskey;
+
+/**
+ 来自 JFHTTPClient 的 defaultParamsBlock
+ */
+@property (nonatomic, copy) NSDictionary* (^defaultParamsBlock)(void);
+
+/**
+ 将 JFHTTPRequest 参数进行初步封装处理，比如加密，签名等
+
+ @param request 请求参数对象
+ */
+- (void)pipe:(JFHTTPRequest *)request;
 
 @end

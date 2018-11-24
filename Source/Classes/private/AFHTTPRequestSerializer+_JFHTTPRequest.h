@@ -1,5 +1,5 @@
 //
-//  JFViewController.h
+//  AFHTTPRequestSerializer+_JFHTTPRequest.h
 //  JFHTTP
 //
 //  Created by jumpingfrog0 on 2018/11/23.
@@ -26,8 +26,13 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
+#import <AFNetworking/AFNetworking.h>
 
-@interface JFViewController : UIViewController
+
+/**
+ 通过 runtime hook AFHTTPRequestSerializer
+ 使在生成 request 方法中可以加入 支持 HTTPClient 和 JFHTTPRequest 配置的逻辑
+ */
+@interface AFHTTPRequestSerializer (_JFHTTPRequest)
 
 @end

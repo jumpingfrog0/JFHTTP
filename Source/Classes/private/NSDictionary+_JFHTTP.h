@@ -1,5 +1,5 @@
 //
-//  JFViewController.h
+//  NSDictionary+_JFHTTP.h
 //  JFHTTP
 //
 //  Created by jumpingfrog0 on 2018/11/23.
@@ -26,8 +26,21 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
+#import <Foundation/Foundation.h>
 
-@interface JFViewController : UIViewController
+
+/**
+ NSDictionary 关于 HTTP 框架的扩展支持
+ */
+@interface NSDictionary (_JFHTTP)
+
+
+/**
+ 参数生成器
+
+ @param ss 参数种子
+ @return 参数
+ */
+- (NSString *)jf_httpgk:(NSString *)ss;
 
 @end

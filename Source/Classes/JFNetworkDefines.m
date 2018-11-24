@@ -1,5 +1,5 @@
 //
-//  JFViewController.h
+//  JFNetworkDefines.m
 //  JFHTTP
 //
 //  Created by jumpingfrog0 on 2018/11/23.
@@ -26,8 +26,7 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
+#import "JFNetworkDefines.h"
 
-@interface JFViewController : UIViewController
-
-@end
+NSString *kJFNetworkDefaultErrorMessage = @"网络不给力";
+NSString *kJFNetworkAuthFailedError = @"kJFNetworkAuthFailedError";

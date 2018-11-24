@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  A flexilbe http framework based on AFNetworking.
                        DESC
 
   s.homepage         = 'https://github.com/jumpingfrog0/JFHTTP'
@@ -36,5 +36,7 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Source/Classes/**/*.h'
   # s.frameworks = 'Foundation', 'UIKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'AFNetworking', '~> 3.0'
+  s.dependency 'HappyDNS', '~> 0.3.5'
+  s.dependency 'JFFoundation', '~> 0.2.0'
 end

@@ -1,5 +1,5 @@
 //
-//  JFViewController.h
+//  JFHTTPRequest.m
 //  JFHTTP
 //
 //  Created by jumpingfrog0 on 2018/11/23.
@@ -26,8 +26,29 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
+#import "JFHTTPRequest.h"
 
-@interface JFViewController : UIViewController
+@interface JFHTTPRequest ()
 
+
+@end
+
+
+@implementation JFHTTPRequest
+
+
+- (instancetype)init {
+    if (self = [super init]) {
+        self.method = @"get";
+        self.contentType = JFHTTPContentTypeJSON;
+        self.timeout = 30;
+        
+        self.mixDefaultParams = YES;
+        self.encrypt = NO;
+        self.dnsDefend = YES;
+        self.sign = YES;
+        self.mock = NO;
+    }
+    return self;
+}
 @end

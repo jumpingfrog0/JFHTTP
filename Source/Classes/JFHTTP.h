@@ -1,5 +1,5 @@
 //
-//  JFViewController.h
+//  JFHTTP.h
 //  JFHTTP
 //
 //  Created by jumpingfrog0 on 2018/11/23.
@@ -26,8 +26,14 @@
 //  THE SOFTWARE.
 //
 
-@import UIKit;
+#import <Foundation/Foundation.h>
 
-@interface JFViewController : UIViewController
+#ifndef JFHTTP_h
+#define JFHTTP_h
 
-@end
+#import "JFHTTPClient.h"
+#import "JFDns.h"
+#import "JFHTTPRequest.h"
+#import "JFNetworkDefines.h"
+
+#endif /* JFHTTP_h */
