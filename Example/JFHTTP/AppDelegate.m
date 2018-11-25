@@ -35,7 +35,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     JFHTTPClient *client = [JFHTTPClient sharedInstance];
-    client.baseURL = [NSURL URLWithString:@"https://easy-mock.com/mock/5a151fd5b2301a1fb73f74f6/example/"];
+    client.baseURL = [NSURL URLWithString:@"https://easy-mock.com/mock/5a151fd5b2301a1fb73f74f6/example"];
     client.mockBaseURL = [NSURL URLWithString:@"https://easy-mock.com/mock/5a151fd5b2301a1fb73f74f6/example"];
     client.userAgent = @"JFHTTP/1.0";
     client.authType = @"JFHTTP.example";

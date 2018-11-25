@@ -25,8 +25,8 @@ Initialize
 
 ```objective-c
 JFHTTPClient *client = [JFHTTPClient sharedInstance];
-client.baseURL = [NSURL URLWithString:@"http://example.baseurl.com"];
-client.mockBaseURL = [NSURL URLWithString:@"http.example.baseurl.mock.com"];
+client.baseURL = [NSURL URLWithString:@"https://easy-mock.com/mock/5a151fd5b2301a1fb73f74f6/example"];
+client.mockBaseURL = [NSURL URLWithString:@"https://easy-mock.com/mock/5a151fd5b2301a1fb73f74f6/example"];
 client.userAgent = @"JFHTTP/1.0";
 client.authType = @"JFHTTP.example";
 client.sskey = @"test-sskey";
@@ -46,11 +46,11 @@ Send Request
 
 ```objective-c
 JFHTTPRequest *request = [[JFHTTPRequest alloc] init];
-request.api = @"/test/get/example";
+request.api = @"/users/1";
 request.method = @"get";
 request.sign = NO;
 request.params = @{
-    @"uid": @"1111",
+    @"uid": @"1",
 };
 request.success = ^(NSDictionary *response) {
     // you can convert json to model here.
