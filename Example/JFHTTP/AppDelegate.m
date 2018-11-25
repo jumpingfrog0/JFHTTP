@@ -35,8 +35,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     JFHTTPClient *client = [JFHTTPClient sharedInstance];
-    client.baseURL = [NSURL URLWithString:@"http://example.baseurl.com"];
-    client.mockBaseURL = [NSURL URLWithString:@"http.example.baseurl.mock.com"];
+    client.baseURL = [NSURL URLWithString:@"https://easy-mock.com/mock/5a151fd5b2301a1fb73f74f6/example/"];
+    client.mockBaseURL = [NSURL URLWithString:@"https://easy-mock.com/mock/5a151fd5b2301a1fb73f74f6/example"];
     client.userAgent = @"JFHTTP/1.0";
     client.authType = @"JFHTTP.example";
     client.sskey = @"test-sskey";
@@ -59,11 +59,11 @@
 
 - (void)testGetRequest {
     JFHTTPRequest *request = [[JFHTTPRequest alloc] init];
-    request.api = @"/test/get/example";
+    request.api = @"/users/1";
     request.mock = YES;
     request.sign = NO;
     request.params = @{
-        @"uid": @"1111",
+        @"uid": @"1",
     };
     
     request.success = ^(NSDictionary *response) {
@@ -79,12 +79,11 @@
 
 - (void)testPostRequest {
     JFHTTPRequest *request = [[JFHTTPRequest alloc] init];
-    request.api = @"/test/post/example";
-    request.mock = YES;
+    request.api = @"/user/new";
     request.sign = NO;
     request.method = @"post";
     request.params = @{
-        @"code": @"N020",
+        @"test": @"test",
     };
     
     request.success = ^(NSDictionary *response) {

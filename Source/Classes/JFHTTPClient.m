@@ -52,15 +52,8 @@
 }
 
 + (void)send:(JFHTTPRequest *)request {
-    JFHTTPClient *client = [JFHTTPClient sharedInstance];
-    
-    [client.requestPipe pipe:request];
-    
-    if (request.mock) {
-        [self _sendRequest:request session:client.mockSession];
-    } else {
-        [self _sendRequest:request session:client.session];
-    }
+    [self _resolveRequest:request];
+    [self _sendRequest:request];
 }
 
 + (void)enableLog:(BOOL)enabled {
@@ -72,9 +65,50 @@
 }
 
 #pragma mark -
-
-+ (void)_sendRequest:(JFHTTPRequest *)request session:(AFHTTPSessionManager *)session {
++ (void)_resolveRequest:(JFHTTPRequest *)request {
     JFHTTPClient *client = [JFHTTPClient sharedInstance];
+
+    // 重置 base URL
+    void (^block)(NSURL *, BOOL) = ^(NSURL *url, BOOL mock) {
+        NSURLComponents *comp = [[NSURLComponents alloc] init];
+        comp.scheme = url.scheme;
+        comp.host = url.host;
+        comp.port = url.port;
+        
+        if (mock) {
+            [client setMockBaseURL:comp.URL];
+        } else {
+            [client setBaseURL:comp.URL];
+        }
+    };
+    
+    // 处理 relative URL
+    if (request.mock) {
+        BOOL resolving = [client.requestPipe resolve:request baseURL:client.mockBaseURL];
+        if (resolving) {
+            block(client.mockBaseURL, YES);
+        }
+    } else {
+        BOOL resolving = [client.requestPipe resolve:request baseURL:client.baseURL];
+        if (resolving) {
+            block(client.baseURL, NO);
+        }
+    }
+    
+    // 处理请求参数
+    [client.requestPipe pipe:request];
+}
+
++ (void)_sendRequest:(JFHTTPRequest *)request {
+    JFHTTPClient *client = [JFHTTPClient sharedInstance];
+    
+    AFHTTPSessionManager *session;
+    if (request.mock) {
+        session = client.mockSession;
+    } else {
+        session = client.session;
+    }
+    
     JFHTTPRespSuccessBlock success = [client.responsePipe pipeSuccessForRequest:request];
     JFHTTPRespFailureBlock failure = [client.responsePipe pipeFailureForRequest:request];
     

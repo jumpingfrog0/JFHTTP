@@ -56,6 +56,15 @@
 @property (nonatomic, copy) NSDictionary* (^defaultParamsBlock)(void);
 
 /**
+ 处理 baseURL 的 relative path，构造完整的 request api
+ 
+ @param request 请求对象
+ @param url baseURL
+ @return request api 有变化则返回YES, 否则返回NO
+ */
+- (BOOL)resolve:(JFHTTPRequest *)request baseURL:(NSURL *)url;
+
+/**
  将 JFHTTPRequest 参数进行初步封装处理，比如加密，签名等
 
  @param request 请求参数对象

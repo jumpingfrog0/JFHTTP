@@ -33,6 +33,16 @@
 
 @implementation _JFHTTPRequestPipe
 
+- (BOOL)resolve:(JFHTTPRequest *)request baseURL:(NSURL *)url {
+    // 决定 URL 相对路径的规范性算法：[RFC1808](https://tools.ietf.org/html/rfc1808)
+    NSString *relativePath = url.relativePath;
+    if (relativePath.length > 0) {
+        request.api = [relativePath stringByAppendingString:request.api];
+        return YES;
+    }
+    return NO;
+}
+
 - (void)pipe:(JFHTTPRequest *)request {
     // 参数加密
     [self _encrypt:request];
