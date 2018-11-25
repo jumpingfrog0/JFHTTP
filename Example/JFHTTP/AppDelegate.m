@@ -28,7 +28,7 @@
 
 #import "AppDelegate.h"
 #import <JFHTTP/JFHTTP.h>
-
+#import <JFUIKit/JFUIKit.h>
 
 @implementation AppDelegate
 
@@ -45,8 +45,7 @@
         params[@"device_mod_"] = @((NSInteger)[[NSDate date] timeIntervalSince1970]);
         params[@"device_platform_"] = @"ios";
         params[@"device_ver_"] = [[UIDevice currentDevice] systemVersion];
-//        params[@"app_ver_"] = [UIDevice jf_appVersion];
-//        params[@"net_"] = [UIDevice jf_network];
+        params[@"app_ver_"] = [UIDevice jf_appVersion];
         return params;
     };
     [JFHTTPClient enableLog:YES];
