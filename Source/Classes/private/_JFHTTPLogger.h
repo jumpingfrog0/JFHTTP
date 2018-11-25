@@ -28,7 +28,7 @@
 
 #import <Foundation/Foundation.h>
 
-// 使用 fprintf 替代 NSLOg
+// 使用 fprintf 替代 NSLog
 #ifdef DEBUG
 #define JFLogHttp(FORMAT, ...) fprintf(stderr, "%s:%d\t%s\n", [[[NSString stringWithUTF8String: __FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat: FORMAT, ## __VA_ARGS__] UTF8String]);
 #else

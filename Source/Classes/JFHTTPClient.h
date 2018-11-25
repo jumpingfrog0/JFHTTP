@@ -65,9 +65,10 @@ FOUNDATION_EXTERN NSString *const JFHTTPLoggerEncryptResultInfoKey;
 @property (nonatomic, copy) NSString *userAgent;
 
 /**
- 设置 tp-micro 框架协议中用来区分应用的 authtype, 需要跟后端协商
+ 设置网络框架协议中用来区分应用的类型, 需要跟后端协商
+ 可以区分不同项目间使用不同的授权方式（校验签名）
  */
-@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *authType;
 
 /**
  设置请求令牌，请求签名需要的参数

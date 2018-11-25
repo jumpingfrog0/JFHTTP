@@ -154,7 +154,7 @@
     }
 }
 
-- (void)setType:(NSString *)type {
+- (void)setAuthType:(NSString *)type {
     self.requestPipe.type = type;
 }
 

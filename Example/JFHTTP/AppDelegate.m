@@ -27,13 +27,76 @@
 //
 
 #import "AppDelegate.h"
+#import <JFHTTP/JFHTTP.h>
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    JFHTTPClient *client = [JFHTTPClient sharedInstance];
+    client.baseURL = [NSURL URLWithString:@"http://example.baseurl.com"];
+    client.mockBaseURL = [NSURL URLWithString:@"http.example.baseurl.mock.com"];
+    client.userAgent = @"JFHTTP/1.0";
+    client.authType = @"JFHTTP.example";
+    client.sskey = @"test-sskey";
+    client.defaultParamsBlock = ^NSDictionary *{
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"device_mod_"] = @((NSInteger)[[NSDate date] timeIntervalSince1970]);
+        params[@"device_platform_"] = @"ios";
+        params[@"device_ver_"] = [[UIDevice currentDevice] systemVersion];
+//        params[@"app_ver_"] = [UIDevice jf_appVersion];
+//        params[@"net_"] = [UIDevice jf_network];
+        return params;
+    };
+    [JFHTTPClient enableLog:YES];
+    [JFHTTPClient allowNotifyTaskDetail:YES];
+    
+    [self testGetRequest];
+    [self testPostRequest];
+    
     return YES;
+}
+
+- (void)testGetRequest {
+    JFHTTPRequest *request = [[JFHTTPRequest alloc] init];
+    request.api = @"/test/get/example";
+    request.mock = YES;
+    request.sign = NO;
+    request.params = @{
+        @"uid": @"1111",
+    };
+    
+    request.success = ^(NSDictionary *response) {
+        // you can convert json to model here.
+        NSLog(@"%@", response);
+    };
+    request.failure = ^(NSError *error) {
+        NSLog(@"%@", error);
+    };
+    
+    [JFHTTPClient send:request];
+}
+
+- (void)testPostRequest {
+    JFHTTPRequest *request = [[JFHTTPRequest alloc] init];
+    request.api = @"/test/post/example";
+    request.mock = YES;
+    request.sign = NO;
+    request.method = @"post";
+    request.params = @{
+        @"code": @"N020",
+    };
+    
+    request.success = ^(NSDictionary *response) {
+        // you can convert json to model here.
+        NSLog(@"%@", response);
+    };
+    request.failure = ^(NSError *error) {
+        NSLog(@"%@", error);
+    };
+    
+    [JFHTTPClient send:request];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

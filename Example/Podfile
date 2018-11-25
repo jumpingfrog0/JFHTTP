@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'JFHTTP_Example' do
   pod 'JFHTTP', :path => '../'
+  pod 'JFUIKit', '~> 0.2.1'
 
   target 'JFHTTP_Tests' do
     inherit! :search_paths
